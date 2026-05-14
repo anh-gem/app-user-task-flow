@@ -43,6 +43,7 @@ export class LoginComponent {
         console.log('Login success:', response);
 
         // Store token and user data
+        localStorage.setItem('loggedIn', 'true');
         localStorage.setItem('token', response.token);
         localStorage.setItem('userId', response.user.id);
         localStorage.setItem('userName', response.user.name);

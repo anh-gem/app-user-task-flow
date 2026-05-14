@@ -8,6 +8,7 @@ export const authGuard: CanActivateFn = (route, state) => {
     .split(';')
     .some((cookie) => cookie.trim().startsWith('loggedIn=true'));
 
+  console.log('Cookies:', document.cookie);
   console.log('isLoggedIn:', loggedIn);
 
   if (loggedIn) {
