@@ -147,6 +147,7 @@ export class TasksComponent implements OnInit {
         this.resetTaskForm(form);
         this.close.emit();
       }
+      this.taskSaved.emit();
     }
   }
 
