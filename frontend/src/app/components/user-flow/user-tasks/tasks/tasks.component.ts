@@ -54,12 +54,12 @@ export class TasksComponent implements OnInit {
         next: (user) => {
           if (user) {
             this.userData = user;
-            console.log('This is user data', this.userData);
+            //console.log('This is user data', this.userData);
           }
           const task = user.tasks.find((task) => task._id === this.taskId);
           if (task) {
             this.taskData = task;
-            console.log('This is task data', this.taskData);
+            //console.log('This is task data', this.taskData);
           }
         },
       });
@@ -67,7 +67,7 @@ export class TasksComponent implements OnInit {
     this.getUserById();
   }
   onFormSubmit(form: NgForm) {
-    console.log('Form Submit User Data', this.userData);
+    //console.log('Form Submit User Data', this.userData);
     if (!this.userData._id) {
       console.error('ID missing!');
       return;
@@ -91,7 +91,7 @@ export class TasksComponent implements OnInit {
         this.updateStatus();
       }
 
-      console.log('FOR TASK UPDATE', this.userId, this.taskData);
+      //console.log('FOR TASK UPDATE', this.userId, this.taskData);
       this.userService.updateTask(this.userId, this.taskData).subscribe({
         next: (res) => {
           this.notificationService.show('Task updated successfully!');
@@ -114,13 +114,13 @@ export class TasksComponent implements OnInit {
         subtask: this.subTaskData.subtask,
         status: this.subTaskData.status,
       });
-      console.log('New task', newTask);
+      //console.log('New task', newTask);
 
       this.userData.tasks.push(newTask);
-      console.log(this.userData);
+      //console.log(this.userData);
       this.userService.addTask(this.userId, newTask).subscribe({
         next: (response) => {
-          console.log('RESPONSE', response);
+          //console.log('RESPONSE', response);
         },
       });
       this.resetTaskForm(form);
@@ -134,7 +134,7 @@ export class TasksComponent implements OnInit {
           .addUserNotification(this.userId, notifications)
           .subscribe({
             next: () => {
-              console.log('Milestone notification saved');
+              //console.log('Milestone notification saved');
               this.notificationService.show('Task added');
               this.taskSaved.emit();
               this.resetTaskForm(form);
@@ -183,7 +183,7 @@ export class TasksComponent implements OnInit {
   }
   addSubTask() {
     if (!this.subTaskData.subtask || !this.subTaskData.subtask.trim()) {
-      console.log('Subtask cannot be empty');
+      //console.log('Subtask cannot be empty');
       return;
     }
     this.taskData.subtasks.push({
