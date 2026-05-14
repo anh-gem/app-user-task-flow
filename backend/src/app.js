@@ -31,6 +31,7 @@ app.use(cookieParser());
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 
+
 app.get("/", (req, res) => {
   res.send("Backend running");
 });

@@ -9,6 +9,12 @@ import { User } from '../models/user.model';
 })
 export class AuthService {
   constructor(private httpClient: HttpClient) {}
+
+  checkAuth() {
+    return this.httpClient.get(`${environment.apiUrl}/api/auth/check-auth`, {
+      withCredentials: true,
+    });
+  }
   loginUser(data: any) {
     return this.httpClient.post(`${environment.apiUrl}/api/auth/login`, data, {
       withCredentials: true,

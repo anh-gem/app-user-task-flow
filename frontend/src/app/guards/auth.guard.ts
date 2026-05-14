@@ -1,21 +1,20 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
+import { catchError, map, of } from 'rxjs';
+import { AuthService } from '../services/auth.service';
 
-export const authGuard: CanActivateFn = (route, state) => {
+export const authGuard: CanActivateFn = () => {
+  const authService = inject(AuthService);
   const router = inject(Router);
 
-  const loggedIn = document.cookie
-    .split(';')
-    .some((cookie) => cookie.trim().startsWith('loggedIn=true'));
+  return authService.checkAuth().pipe(
+    map(() => {
+      return true;
+    }),
 
-  console.log('Cookies:', document.cookie);
-  console.log('isLoggedIn:', loggedIn);
-
-  if (loggedIn) {
-    return true;
-  }
-
-  alert('Please login first');
-  router.navigate(['/']);
-  return false;
+    catchError(() => {
+      router.navigate(['/login']);
+      return of(false);
+    }),
+  );
 };
