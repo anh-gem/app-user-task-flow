@@ -14,9 +14,13 @@ const app = express();
 app.use(express.json());
 
 //Cors
+const allowedOrigins = [
+  "http://localhost:4200",
+  "https://user-task-flow-app.netlify.app",
+];
 app.use(
   cors({
-    origin: "http://localhost:4200",
+    origin: allowedOrigins,
     // origin: "https://user-task-flow-app.netlify.app",
     credentials: true,
   }),
