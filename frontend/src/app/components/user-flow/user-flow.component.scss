@@ -1,0 +1,92 @@
+.navbar {
+  display: flex;
+  gap: 20px;
+  padding: 12px 20px;
+  background: #4f46e5;
+  align-items: center;
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+  box-sizing: border-box;
+
+  .navbar-logo {
+    margin-right: auto;
+
+    .logo-link {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: 0.2s ease;
+
+      .logo-icon {
+        font-size: 1.3rem;
+        font-weight: bold;
+        color: #24d74e;
+        background: rgba(255, 255, 255, 0.2);
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .logo-text {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: #ffffff;
+        letter-spacing: 0.5px;
+      }
+
+      &:hover {
+        opacity: 0.9;
+      }
+    }
+  }
+}
+
+/* Links */
+.nav-link {
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: 6px;
+  transition: 0.2s ease;
+  cursor: pointer;
+}
+
+/* Hover effect */
+.nav-link:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Active route (Angular magic) */
+.nav-link.active {
+  background: #ffffff;
+  color: #4f46e5;
+}
+
+.dasboard-container {
+  overflow-x: hidden;
+}
+
+.pages {
+  margin-top: 70px;
+}
+
+.notification {
+  background-color: #24d74e;
+  animation: intenseglow 1.5s ease-in-out infinite;
+}
+
+@keyframes intenseglow {
+  0%, 100% {
+    box-shadow: 0 0 5px #24d74e;
+  }
+  50% {
+    box-shadow: 0 0 20px #24d74e, 0 0 40px rgba(36, 215, 78, 0.6);
+  }
+}

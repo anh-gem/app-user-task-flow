@@ -1,0 +1,33 @@
+<div class="overlay">
+  <div class="popup">
+
+    <h2>Edit Task</h2>
+    <span><strong>Main task</strong></span>
+    <input [(ngModel)]="localTask.title" />
+
+    <select [(ngModel)]="localTask.status">
+      <option>Pending</option>
+      <option>In Progress</option>
+      <option>Done</option>
+      <option>Paused</option>
+    </select>
+    <div *ngFor="let sub of localTask.subtasks;let i =index" class="subtask-row">
+      <div class="subtask-content">
+        <span><strong>Subtask-{{i+1}}</strong></span>
+        <input [(ngModel)]="sub.subtask" />
+        <select [(ngModel)]="sub.status">
+          <option>Pending</option>
+          <option>In Progress</option>
+          <option>Done</option>
+        </select>
+      </div>
+      <mat-icon class="delete-icon" (click)="deleteSubtask(i)">delete</mat-icon>
+    </div>
+    <span class="addSubTask" (click)="addSubTasks()">+ Add a subtask</span>
+    <div class="popupButtons">
+      <button class="saveBtn" (click)="onSave()">Save</button>
+      <button class="closeBtn" (click)="onClose()">Close</button>
+    </div>
+
+  </div>
+</div>

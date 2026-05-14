@@ -1,0 +1,79 @@
+<form class="formClass" #taskForm="ngForm" (ngSubmit)="onFormSubmit(taskForm)">
+
+  <h1>Add tasks</h1>
+
+  <!-- TITLE -->
+  <label>Add title</label>
+  <input type="text" name="title" [(ngModel)]="taskData.title" required minlength="3" #title="ngModel"
+    placeholder="Add title" />
+
+  <div *ngIf="title.invalid && title.touched">
+    <small *ngIf="title.errors?.['required']">Title is required</small>
+    <small *ngIf="title.errors?.['minlength']">Min 3 characters</small>
+  </div>
+
+  <!-- STATUS -->
+  <label>Select status</label>
+  <select name="status" [(ngModel)]="taskData.status" required #status="ngModel">
+    <option value="" disabled>Select status</option>
+    <option>Pending</option>
+    <option>In Progress</option>
+    <option>Done</option>
+    <option>Paused</option>
+  </select>
+
+  <div *ngIf="status.invalid && status.touched">
+    <small>Status is required</small>
+  </div>
+
+  <!-- SUBTASK LIST -->
+  <div class="display-flex-column">
+    <h2>Subtasks</h2>
+    <span class="addSubTask" (click)="addSubTaskForm()"> {{ subTaskFormShow ? '✕ Close' : '+ Add subtasks here'
+      }}</span>
+  </div>
+
+  <div *ngFor="let t of taskData.subtasks; let i = index">
+    {{ i + 1 }}. {{ t.subtask }} - {{ t.status }}
+  </div>
+
+  <!-- SUBTASK FORM -->
+  <div class="subtaskClass" *ngIf="subTaskFormShow">
+
+    <label>Enter subtask</label>
+    <input type="text" name="subtask" [(ngModel)]="subTaskData.subtask" required minlength="2" #subtask="ngModel"
+      placeholder="Add subtask" />
+
+    <div *ngIf="subtask.invalid && subtask.touched">
+      <small *ngIf="subtask.errors?.['required']">Subtask required</small>
+      <small *ngIf="subtask.errors?.['minlength']">Min 2 characters</small>
+    </div>
+
+    <label>Select status</label>
+    <select name="subtaskStatus" [(ngModel)]="subTaskData.status" required #subStatus="ngModel">
+      <option value="" disabled>Select status</option>
+      <option>Pending</option>
+      <option>In Progress</option>
+      <option>Done</option>
+    </select>
+
+    <div *ngIf="subStatus.invalid && subStatus.touched">
+      <small>Status required</small>
+    </div>
+
+    <button type="button" (click)="addSubTask()" [disabled]="subtask.invalid || subStatus.invalid">
+      Save
+    </button>
+
+  </div>
+
+  <!-- SUBMIT -->
+  <div class="formBtnClass">
+    <button type="submit" [disabled]="taskForm.invalid">
+      Submit Task
+    </button>
+    <button type="button" [disabled]="taskForm.invalid" (click)="resetTaskForm(taskForm)">
+      Cancel
+    </button>
+  </div>
+</form>

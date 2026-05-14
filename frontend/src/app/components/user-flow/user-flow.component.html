@@ -1,0 +1,24 @@
+<div class="dasboard-container">
+  <nav class="navbar">
+    <!-- LOGO -->
+    <div class="navbar-logo">
+      <a [routerLink]="['/user-flow', id, 'home']" class="logo-link">
+        <span class="logo-icon">✓</span>
+        <span class="logo-text">TaskFlow</span>
+      </a>
+    </div>
+
+    <!-- NAV LINKS -->
+    <a class="nav-link" [routerLink]="['/user-flow', id, 'home']">Home</a>
+    <a class="nav-link" [routerLink]="['/user-flow', id, 'user-tasks']">Your tasks</a>
+    <div>
+      <a class="nav-link" [class.notification]="show" [routerLink]="['/user-flow', id, 'notifications']"
+        (click)="notificationClicked()">Notifications</a>
+    </div>
+    <a class="nav-link" [routerLink]="['/user-flow', id, 'profile']">Profile</a>
+    <a class="nav-link" (click)="onLogout()">logout</a>
+  </nav>
+  <div class="pages">
+    <router-outlet></router-outlet>
+  </div>
+</div>

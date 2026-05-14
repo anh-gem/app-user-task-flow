@@ -1,0 +1,11 @@
+<div class="notification-container">
+
+  <div class="notification-card" *ngFor="let notification of userData.notifications,let i = index ">
+    {{ notification.message }}
+    <div class="cardBottom"> <span class="date">{{notification.createdAt | date: 'medium'}}</span>
+      <mat-icon class="delete-icon" (click)="deleteNotification(i)">delete</mat-icon>
+    </div>
+
+  </div>
+
+</div>

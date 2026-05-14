@@ -1,0 +1,52 @@
+<h2 class="form-heading">Register User</h2>
+<form class="formClass" #registerForm="ngForm" (ngSubmit)="handleOnSubmit(registerForm)">
+
+  <!-- NAME -->
+  <label for="name">Name</label>
+  <input type="text" id="name" placeholder="Ex. John Smith" [(ngModel)]="formData.name" name="name" required
+    minlength="3" #name="ngModel" />
+  <div *ngIf="name.invalid && name.touched">
+    <small *ngIf="name.errors?.['required']">Name is required</small>
+    <small *ngIf="name.errors?.['minlength']">Minimum 3 characters</small>
+  </div>
+
+  <!-- CITY -->
+  <label for="city">City</label>
+  <input type="text" id="city" placeholder="Ex. New York" [(ngModel)]="formData.city" name="city" required
+    #city="ngModel" />
+  <div *ngIf="city.invalid && city.touched">
+    <small>City is required</small>
+  </div>
+
+  <!-- QUALIFICATION -->
+  <label for="qualification">Qualification</label>
+  <input type="text" id="qualification" placeholder="Ex. MCA" [(ngModel)]="formData.qualification" name="qualification"
+    required #qualification="ngModel" />
+  <div *ngIf="qualification.invalid && qualification.touched">
+    <small>Qualification is required</small>
+  </div>
+
+  <!-- EMAIL -->
+  <label for="email">Email</label>
+  <input type="email" id="email" placeholder="Ex.john@mail.com" [(ngModel)]="formData.email" name="email" required email
+    #email="ngModel" />
+  <div *ngIf="email.invalid && email.touched">
+    <small *ngIf="email.errors?.['required']">Email is required</small>
+    <small *ngIf="email.errors?.['email']">Invalid email format</small>
+  </div>
+
+  <!-- PASSWORD -->
+  <label for="password">Password</label>
+  <input type="password" id="password" placeholder="Apq@267b" [(ngModel)]="formData.password" name="password" required
+    minlength="6" #password="ngModel" />
+  <div *ngIf="password.invalid && password.touched">
+    <small *ngIf="password.errors?.['required']">Password is required</small>
+    <small *ngIf="password.errors?.['minlength']">Minimum 6 characters</small>
+  </div>
+
+  <!-- SUBMIT -->
+  <button type="submit" [disabled]="registerForm.invalid">
+    Submit
+  </button>
+
+</form>

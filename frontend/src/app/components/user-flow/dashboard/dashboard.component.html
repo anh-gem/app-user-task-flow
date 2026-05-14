@@ -1,0 +1,37 @@
+<div class="dashboard" *ngIf="!isLoading">
+  <div class="header">
+    <h1>Dashboard</h1>
+  </div>
+
+  <div class="progress-container">
+    <div class="progress-circle">
+      <svg viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="45" class="bg-circle"></circle>
+        <circle cx="50" cy="50" r="45" class="progress-circle-fill"
+          [attr.style]="'stroke-dasharray: ' + ((completedTasksPercentage / 100) * 283) + ' 283'">
+        </circle>
+      </svg>
+      <div class="percentage-text">{{ completedTasksPercentage }}%</div>
+    </div>
+    <label>{{ completedTasks }}/{{ totalTasks }} tasks completed</label>
+  </div>
+
+  <div class="stats">
+    <div class="stat-card completed" (click)="sendStatusFilter('Done')">
+      <h3>{{ completedTasks }}</h3>
+      <p>Completed</p>
+    </div>
+    <div class="stat-card pending" (click)="sendStatusFilter('Pending')">
+      <h3>{{ pendingTasks }}</h3>
+      <p>Pending</p>
+    </div>
+    <div class="stat-card in-progress" (click)="sendStatusFilter('In Progress')">
+      <h3>{{ inProgressTasks }}</h3>
+      <p>In Progress</p>
+    </div>
+    <div class="stat-card paused" (click)="sendStatusFilter('Paused')">
+      <h3>{{ pausedTasks }}</h3>
+      <p>Paused</p>
+    </div>
+  </div>
+</div>

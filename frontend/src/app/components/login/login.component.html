@@ -1,0 +1,44 @@
+<h2 class="form-heading">Sign In</h2>
+<form class="formClass" #loginForm="ngForm" (ngSubmit)="handleOnSubmit(loginForm)">
+
+  <!-- EMAIL -->
+  <label for="email">Email</label>
+  <input type="email" id="email" placeholder="Ex. john@mail.com" [(ngModel)]="formData.email" name="email" required
+    email #email="ngModel" />
+  <div *ngIf="email.invalid && email.touched">
+    <small *ngIf="email.errors?.['required']">Email is required</small>
+    <small *ngIf="email.errors?.['email']">Invalid email format</small>
+  </div>
+
+  <!-- PASSWORD -->
+  <label for="password">Password</label>
+  <input type="password" id="password" placeholder="Apq@267b" [(ngModel)]="formData.password" name="password" required
+    minlength="6" #password="ngModel" />
+  <div *ngIf="password.invalid && password.touched">
+    <small *ngIf="password.errors?.['required']">Password is required</small>
+    <small *ngIf="password.errors?.['minlength']">Minimum 6 characters</small>
+  </div>
+
+  <!-- SUBMIT -->
+  <button type="submit" [disabled]="loginForm.invalid">
+    Sign In
+  </button>
+
+</form>
+
+<!-- DIVIDER -->
+<div class="divider">
+  <span>OR</span>
+</div>
+
+<!-- SOCIAL LOGIN -->
+<div class="social-login">
+  <button class="social-btn" type="button" title="Google">G</button>
+  <button class="social-btn" type="button" title="Facebook">f</button>
+  <button class="social-btn" type="button" title="GitHub">◐</button>
+</div>
+
+<!-- SIGN UP LINK -->
+<div class="signup-link">
+  Don't have an account? <a [routerLink]="['/register']">Sign up here</a>
+</div>

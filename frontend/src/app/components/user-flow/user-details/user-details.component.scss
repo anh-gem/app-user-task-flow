@@ -1,0 +1,147 @@
+
+/* Main form container */
+.formClass {
+  max-width: 90%;
+
+  margin: 40px auto;
+  padding: 30px;
+
+  background: #ffffff;
+  border-radius: 16px;
+
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+
+  display: flex;
+  flex-direction: column;
+
+  font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+}
+
+/* Heading */
+.formClass h1 {
+  text-align: center;
+  margin-bottom: 24px;
+
+  color: #4f46e5;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+/* Labels */
+.formClass label {
+  margin-top: 14px;
+  margin-bottom: 6px;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  color: #374151;
+}
+
+/* Inputs */
+.formClass input {
+  width: 100%;
+
+  padding: 12px;
+
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+
+  font-size: 14px;
+
+  transition: all 0.2s ease;
+
+  box-sizing: border-box;
+}
+
+/* Placeholder */
+.formClass input::placeholder {
+  color: #9ca3af;
+}
+
+/* Focus effect */
+.formClass input:focus {
+  outline: none;
+
+  border-color: #4f46e5;
+
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+}
+
+/* Disabled inputs */
+.formClass input:disabled {
+  background: #f3f4f6;
+  color: #6b7280;
+  cursor: not-allowed;
+}
+
+/* Error messages */
+.formClass small {
+  color: #dc2626;
+  font-size: 12px;
+
+  margin-top: 4px;
+
+  display: block;
+}
+
+/* Invalid input */
+.formClass input.ng-invalid.ng-touched {
+  border-color: #dc2626;
+}
+
+/* Valid input */
+.formClass input.ng-valid.ng-touched {
+  border-color: #16a34a;
+}
+
+/* Buttons */
+.formClass button {
+  margin-top: 18px;
+  width: 47%;
+  padding: 12px;
+
+  border: none;
+  border-radius: 10px;
+
+  font-size: 15px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+/* Enable / Disable button */
+.formClass button[type='button'] {
+  background: #4f46e5;
+  color: white;
+}
+
+.formClass button[type='button']:hover {
+  background: #4f46e5;
+}
+
+/* Update button */
+.formClass button[type='submit'] {
+  background: #4f46e5;
+  color: white;
+}
+
+.formClass button[type='submit']:hover {
+  background: #4338ca;
+  transform: translateY(-1px);
+}
+
+/* Disabled submit */
+.formClass button[type='submit']:disabled {
+  background: #a5b4fc;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.buttonsClass{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}

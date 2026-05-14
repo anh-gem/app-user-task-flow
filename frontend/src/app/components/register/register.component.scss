@@ -1,0 +1,110 @@
+
+/* Page center */
+.formClass {
+  width: 400px;
+  max-width: 90%;
+  margin: 40px auto;
+  padding: 28px;
+
+  background: #ffffff;
+  border-radius: 14px;
+
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+
+  display: flex;
+  flex-direction: column;
+
+  font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+}
+
+/* Labels */
+.formClass label {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  margin-top: 14px;
+  color: #333;
+}
+
+/* Inputs */
+.formClass input {
+  width: 100%;
+  padding: 12px;
+
+  border: 1px solid #dcdcdc;
+  border-radius: 10px;
+
+  font-size: 14px;
+
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+/* Placeholder */
+.formClass input::placeholder {
+  color: #9ca3af;
+}
+
+/* Input focus */
+.formClass input:focus {
+  outline: none;
+  border-color: #4f46e5;
+
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+}
+
+/* Error text */
+.formClass small {
+  color: #dc2626;
+  font-size: 12px;
+  margin-top: 4px;
+  display: block;
+}
+
+/* Submit button */
+.formClass button {
+  margin-top: 24px;
+  padding: 12px;
+
+  border: none;
+  border-radius: 10px;
+
+  background: #4f46e5;
+  color: white;
+
+  font-size: 15px;
+  font-weight: 600;
+
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* Hover */
+.formClass button:hover {
+  background: #4338ca;
+  transform: translateY(-1px);
+}
+
+/* Disabled button */
+.formClass button:disabled {
+  background: #a5b4fc;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Error input border */
+.formClass input.ng-invalid.ng-touched {
+  border-color: #dc2626;
+}
+
+/* Valid input border */
+.formClass input.ng-valid.ng-touched {
+  border-color: #16a34a;
+}
+.form-heading {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #4f46e5;
+  font-size: 26px;
+  font-weight: 700;
+}

@@ -1,0 +1,70 @@
+<div class="task-card">
+  <span class="addTask" (click)="addTaskForm()">
+    {{ taskFormShow ? '✕ Close' : '+ Add tasks here' }}
+  </span>
+  <div *ngIf="taskFormShow"><app-tasks [taskId]="taskId" (taskSaved)="onTaskSaved()"
+      (close)="closeTaskForm()"></app-tasks>
+  </div>
+</div>
+
+
+<div class="search-container">
+  <input type="text" [(ngModel)]="status" class="search-input" placeholder="Search by status..."
+    (keyup.enter)="onSearch()">
+  <mat-icon class=" search-icon">search</mat-icon>
+</div>
+
+
+<div class="task-card" *ngFor="let t of paginatedTasks; let ti = index">
+
+  <div class="task-row">
+    <label class="task-title"><strong>Title:</strong> {{ t.title }}</label>
+    <label class="task-status"><strong>Status:</strong> {{ t.status }}</label>
+  </div>
+  <label class="task-creation-date">Created at: {{t.createdAt| date: 'medium'}}</label>
+  <label *ngIf="t.updatedAt" class="task-creation-date">Updated at: {{t.updatedAt| date: 'medium'}}</label>
+
+  <h4 class="subtask-heading">Subtasks</h4>
+  <div *ngIf="!t.subtasks || t.subtasks.length === 0">No subtasks added</div>
+  <div class="subtask-item" *ngFor="let sub of t.subtasks; let si = index">
+    <div class="subtask-row">
+      <label><strong>{{ si + 1 }}.</strong> {{ sub.subtask }}</label>
+      <label class="status"><strong>Status:</strong> {{ sub.status }}</label>
+    </div>
+  </div>
+
+  <div class="taskButton">
+    <button class="edit-btn" (click)="openEditPopup(t)">Edit</button>
+    <button class="edit-btn" (click)="deleteTask(t._id)">Delete</button>
+  </div>
+</div>
+
+<!-- PAGINATION CONTROLS -->
+<div class="pagination">
+  <button (click)="previousPage()" [disabled]="currentPage === 1">
+    ← Previous
+  </button>
+
+  <!-- PAGE NUMBERS -->
+  <div class="page-numbers">
+    <button *ngFor="let page of [].constructor(totalPages); let i = index" (click)="goToPage(i + 1)"
+      [class.active]="currentPage === i + 1">
+      {{ i + 1 }}
+    </button>
+  </div>
+
+  <button (click)="nextPage()" [disabled]="currentPage === totalPages">
+    Next →
+  </button>
+</div>
+
+<!-- PAGE INFO -->
+<p class="page-info">
+  Page {{ currentPage }} of {{ totalPages }}
+  ({{ taskData.length }} total tasks)
+</p>
+
+
+<app-edit-task-popup *ngIf="isPopupOpen" [task]="selectedTask" [userId]="userId" (close)="closePopup()"
+  (taskSaved)="onTaskSaved()">
+</app-edit-task-popup>
