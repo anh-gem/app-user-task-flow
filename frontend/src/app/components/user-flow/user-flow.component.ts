@@ -61,6 +61,11 @@ export class UserFlowComponent implements OnInit {
   notificationClicked() {
     this.show = false;
   }
+  onClickTasks() {
+    this.router.navigate(['/user-flow', this.id, 'user-tasks'], {
+      queryParams: {},
+    });
+  }
   onLogout() {
     if (confirm('Are you sure you want to log out?')) {
       this.authService.loginOut().subscribe({

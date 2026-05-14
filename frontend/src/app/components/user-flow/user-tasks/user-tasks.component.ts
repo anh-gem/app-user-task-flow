@@ -9,6 +9,7 @@ import { TasksComponent } from './tasks/tasks.component';
 import { MatIconModule } from '@angular/material/icon';
 import { NotificationService } from '../../../services/notification.service';
 import type { User } from '../../../models/user.model';
+import { ViewChild, ElementRef, ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-user-tasks',
@@ -25,6 +26,8 @@ import type { User } from '../../../models/user.model';
   styleUrl: './user-tasks.component.scss',
 })
 export class UserTasksComponent implements OnInit {
+  @ViewChild('taskFormSection')
+  taskFormSection!: ElementRef;
   taskFormShow: boolean = false;
   isPopupOpen = false;
   selectedTask: any = null;
@@ -42,20 +45,34 @@ export class UserTasksComponent implements OnInit {
   itemsPerPage: number = 5;
   totalPages: number = 0;
   paginatedTasks: Task[] = [];
+
   constructor(
     private userService: UserService,
     private route: ActivatedRoute,
     private router: Router,
     private notificationService: NotificationService,
+    private cdr: ChangeDetectorRef,
   ) {}
   ngOnInit(): void {
+    this.route.queryParams.subscribe((params) => {
+      console.log('QUERY PARAMS CHANGED', params);
+    });
     this.route.queryParams.subscribe((params) => {
       this.taskId = params['taskId'];
       this.status = params['status'];
 
       if (this.taskId && !this.status) {
         this.taskFormShow = true;
-      } else if (this.status && !this.taskId) {
+        this.cdr.detectChanges();
+        setTimeout(() => {
+          console.log(this.taskFormSection);
+
+          this.taskFormSection?.nativeElement?.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start',
+          });
+        }, 300);
+      } else {
         this.taskFormShow = false;
       }
     });

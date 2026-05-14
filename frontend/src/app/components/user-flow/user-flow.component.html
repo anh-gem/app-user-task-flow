@@ -10,7 +10,7 @@
 
     <!-- NAV LINKS -->
     <a class="nav-link" [routerLink]="['/user-flow', id, 'home']">Home</a>
-    <a class="nav-link" [routerLink]="['/user-flow', id, 'user-tasks']">Your tasks</a>
+    <a class="nav-link" (click)="onClickTasks()">Your tasks</a>
     <div>
       <a class="nav-link" [class.notification]="show" [routerLink]="['/user-flow', id, 'notifications']"
         (click)="notificationClicked()">Notifications</a>
