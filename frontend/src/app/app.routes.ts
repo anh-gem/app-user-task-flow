@@ -9,6 +9,7 @@ import { ProfileComponent } from './components/user-flow/profile/profile.compone
 import { NotificationComponent } from './components/user-flow/notification/notification.component';
 import { NotificationPanelComponent } from './components/user-flow/notification-panel/notification-panel.component';
 import { UserFlowComponent } from './components/user-flow/user-flow.component';
+import { authGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
   {
@@ -32,23 +33,28 @@ export const routes: Routes = [
         path: '',
         redirectTo: 'home',
         pathMatch: 'full',
+        canActivate: [authGuard],
       },
       {
         path: 'home',
         component: HomeComponent,
+        canActivate: [authGuard],
       },
       {
         path: 'user-tasks',
         component: UserTasksComponent,
+        canActivate: [authGuard],
       },
 
       {
         path: 'profile',
         component: ProfileComponent,
+        canActivate: [authGuard],
       },
       {
         path: 'notifications',
         component: NotificationPanelComponent,
+        canActivate: [authGuard],
       },
     ],
   },
