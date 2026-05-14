@@ -46,7 +46,7 @@ export class UserFlowComponent implements OnInit {
     this.notificationService.notificationBhv$.pipe(skip(1)).subscribe({
       next: (notifications) => {
         if (notifications && notifications.length > 0) {
-          console.log('New persistent notification:', notifications);
+          // console.log('New persistent notification:', notifications);
           this.show = true;
 
           // Glow for 3 seconds then turn off
@@ -65,7 +65,6 @@ export class UserFlowComponent implements OnInit {
     if (confirm('Are you sure you want to log out?')) {
       this.authService.loginOut().subscribe({
         next: (response) => {
-          console.log(response);
           this.router.navigate(['/']);
         },
       });

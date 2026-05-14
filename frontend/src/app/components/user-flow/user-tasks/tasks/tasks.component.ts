@@ -49,8 +49,6 @@ export class TasksComponent implements OnInit {
   ) {}
   ngOnInit(): void {
     this.userId = this.route.parent?.snapshot.paramMap.get('id');
-    console.log(this.userId);
-    console.log('taskid', this.taskId);
     if (this.taskId) {
       this.userService.getUser(this.userId).subscribe({
         next: (user) => {

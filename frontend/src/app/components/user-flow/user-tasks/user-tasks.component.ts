@@ -63,7 +63,6 @@ export class UserTasksComponent implements OnInit {
     this.userId = this.route.parent?.snapshot.paramMap.get('id');
     this.userService.getUser(this.userId).subscribe({
       next: (response) => {
-        console.log(response);
         this.responseData = response.tasks;
         if (this.status) {
           this.taskData = response.tasks.filter(
@@ -102,8 +101,6 @@ export class UserTasksComponent implements OnInit {
     this.updatePagination();
   }
   deleteTask(taskId: any) {
-    // CHECK confirmation result
-    console.log(taskId);
     if (confirm('Are you sure you want to delete this task?')) {
       this.taskData = this.taskData.filter((task) => task._id !== taskId);
       this.userData.tasks = this.userData.tasks.filter(
@@ -113,7 +110,6 @@ export class UserTasksComponent implements OnInit {
       this.userData.tasks = this.taskData;
       this.userService.updateUser(this.userId, this.userData).subscribe({
         next: (response) => {
-          console.log('Task deleted', response);
           this.notificationService.show('Task deleted');
         },
         error: (err) => {
@@ -153,7 +149,6 @@ export class UserTasksComponent implements OnInit {
     }
   }
   openEditPopup(task: any) {
-    console.log('clicked', task);
     this.selectedTask = task;
     this.isPopupOpen = true;
   }
@@ -197,7 +192,7 @@ export class UserTasksComponent implements OnInit {
         this.currentPage = 1;
         this.updatePagination();
 
-        console.log('Tasks loaded:', this.taskData);
+        // console.log('Tasks loaded:', this.taskData);
       },
       error: (err) => {
         console.error('Error loading tasks:', err);

@@ -32,12 +32,10 @@ export class EditTaskPopupComponent implements OnInit {
 
   ngOnInit(): void {
     this.userId = this.route.parent?.snapshot.paramMap.get('id');
-    // Create a deep copy of task so we don't mutate the input
     this.localTask = structuredClone(this.task);
   }
 
   addSubTasks() {
-    console.log('Task in edit popup', this.localTask);
     this.router.navigate(['/user-flow', this.userId, 'user-tasks'], {
       queryParams: { taskId: this.localTask._id },
     });
@@ -45,7 +43,6 @@ export class EditTaskPopupComponent implements OnInit {
   }
 
   onSave() {
-    console.log('Edit task', this.localTask);
     this.localTask.updatedAt = new Date();
 
     // Update status based on subtasks
@@ -93,13 +90,13 @@ export class EditTaskPopupComponent implements OnInit {
 
           const notifications =
             this.notificationService.getNotificationsValue();
-          console.log('Notifications to save:', notifications);
+          // console.log('Notifications to save:', notifications);
 
           this.userService
             .addUserNotification(this.userId, notifications)
             .subscribe({
               next: (response) => {
-                console.log('Updated Data', response);
+                // console.log('Updated Data', response);
                 this.taskSaved.emit();
                 this.onClose();
               },
